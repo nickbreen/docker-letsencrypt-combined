@@ -1,4 +1,4 @@
-FROM nickbreen/letsencrypt
+FROM nickbreen/letsencrypt:v1.0.0
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -qqy jq && apt-get clean
 
