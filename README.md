@@ -22,10 +22,7 @@ Then `exec` into the container and run `le` to invoke letsencrypt.
 docker exec le le -c /etc/opt/letsencrypt/combined.cli --email webmaster@example.com --domains www.example.com,example.com
 ```
 
-Configuration files are provided with useful defaults.
-
-- `$XDG_CONFIG_HOME/letsencrypt/install.sh` - configures "combined" installation
-- `$XDG_CONFIG_HOME/letsencrypt/cli.sh` - configures "combined" installation and "webroot" authentication
+Configuration files are provided with useful defaults in `$XDG_CONFIG_HOME/letsencrypt`, consult each files for more info.
 
 Notes:
 
