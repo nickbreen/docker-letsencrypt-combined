@@ -24,3 +24,6 @@ RUN TMP=$(mktemp -d) && cd $TMP && \
         --letsencrypt-combined:combined-path . && \
     test -s example.com.pem ) && \
     cd && rm -rf $TMP
+
+# Add a default cron job that does monthly renews (and logs them)
+ENV CRON_D_LE="@monthly root le renew | logger\n"
