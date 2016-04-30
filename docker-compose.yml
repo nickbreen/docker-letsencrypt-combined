@@ -1,7 +1,7 @@
 version: '2'
 services:
   le:
-    image: nickbreen/letsencrypt
+    image: nickbreen/letsencrypt-combined
     build: .
     volumes:
       - /certs # mount this from the haproxy

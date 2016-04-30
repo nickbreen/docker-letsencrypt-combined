@@ -1,8 +1,8 @@
-FROM nickbreen/letsencrypt:v1.0.0
+FROM nickbreen/letsencrypt:v1.1.0
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -qqy jq && apt-get clean
 
-ENV COMB_VER=1.0.0 COMB_DIR=/opt/letsencrypt-combined-installer
+ENV COMB_VER=1.1.0-rc1 COMB_DIR=/opt/letsencrypt-combined-installer
 
 RUN URL=$(curl -LsSf https://api.github.com/repos/nickbreen/letsencrypt-combined-installer/releases/tags/v$COMB_VER | jq -r .tarball_url) && \
     curl -sSfL $URL | (mkdir -p $COMB_DIR && tar zx -C $COMB_DIR --strip-components 1)
@@ -26,4 +26,4 @@ RUN TMP=$(mktemp -d) && cd $TMP && \
     cd && rm -rf $TMP
 
 # Add a default cron job that does monthly renews (and logs them)
-ENV CRON_D_LE="@monthly root le renew | logger\n"
+ENV CRON_D_LE="@monthly root le renew | logger --tag le-renew\n"
