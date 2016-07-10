@@ -2,10 +2,11 @@ version: '2'
 services:
   le:
     image: nickbreen/letsencrypt-combined
-    build: .
+    build:
+        context: .
     volumes:
       - /certs # mount this from the haproxy
       - /var/www # mount this from the web server
     environment:
       CRON_D_LE: |
-        @monthly root le renew | logger
+        @monthly root /usr/local/bin/le renew | logger --tag le-renew
