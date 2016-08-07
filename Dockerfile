@@ -9,7 +9,7 @@ RUN URL=$(curl -LsSf https://api.github.com/repos/nickbreen/letsencrypt-combined
 
 ENV XDG_CONFIG_HOME=/etc/opt
 
-RUN . $LE_DIR/venv/bin/activate && cd $COMB_DIR && python setup.py install && apt-get clean
+RUN . $LE_DIR/venv/bin/activate && pip install -e $COMB_DIR
 
 COPY *.ini $XDG_CONFIG_HOME/letsencrypt/
 
@@ -25,7 +25,6 @@ RUN TMP=$(mktemp -d) && cd $TMP && \
         --letsencrypt-combined:combined-path . && \
     test -s test.example.com.pem ) && \
     cd && rm -rf $TMP
-
 
 # Add a default cron job that does monthly renews (and logs them)
 ENV CRON_D_LE="@monthly root /usr/local/bin/le renew 2>&1 | logger --tag le-renew\n"
