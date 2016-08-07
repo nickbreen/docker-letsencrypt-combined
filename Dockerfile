@@ -1,6 +1,6 @@
 FROM nickbreen/letsencrypt:v1.2.1
 
-ENV COMB_VER=1.2.0-rc2 COMB_DIR=/opt/letsencrypt-combined-installer
+ENV COMB_VER=1.2.0-rc3 COMB_DIR=/opt/letsencrypt-combined-installer
 
 RUN pip install python-dockercloud docker-cloud
 
